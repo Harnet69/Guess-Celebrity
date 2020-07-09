@@ -3,7 +3,7 @@ package com.harnet.guesscelebrity.model;
 public class SourceSite {
     private String name;
     private String link;
-    private String context;
+    private String content;
 
     public SourceSite(String name, String link) {
         this.name = name;
@@ -18,11 +18,11 @@ public class SourceSite {
         return link;
     }
 
-    public String getContext() {
-        return context;
+    public String getContent() {
+        return content;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

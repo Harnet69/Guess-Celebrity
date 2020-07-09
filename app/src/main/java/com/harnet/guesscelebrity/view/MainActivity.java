@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         siteParserController = new SiteParserController();
-        siteParserController.parse();
-        System.out.println(siteParserController.getSourceSite().getContext());
+//        siteParserController.downloadContent();
+//        siteParserController.parseContent();
     }
 }
