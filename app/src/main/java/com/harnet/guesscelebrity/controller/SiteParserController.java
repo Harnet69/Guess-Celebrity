@@ -9,7 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SiteParserController {
-    private SourceSite sourceSite = new SourceSite("imdb.com", "https://www.imdb.com/list/ls052283250/");
+    private SourceSite sourceSite = new SourceSite("imdb.com", "https://www.imdb.com/list/ls052283250/",
+            "","","");
     private DownloadWebContentController downloadWebContentController = new DownloadWebContentController();
 
     public SiteParserController() {
