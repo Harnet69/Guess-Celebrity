@@ -8,8 +8,10 @@ import java.util.List;
 public class CelebrityController {
     private static CelebrityController instance;
     private List<Celebrity> celebrities = new ArrayList<>();
+    private SiteParserController siteParserController;
 
     private CelebrityController() {
+        siteParserController = new SiteParserController();
     }
 
     public static CelebrityController getInstance() {
@@ -21,6 +23,10 @@ public class CelebrityController {
 
     public List<Celebrity> getCelebrities() {
         return celebrities;
+    }
+
+    public SiteParserController getSiteParserController() {
+        return siteParserController;
     }
 
     public void addCelebrityToList(String name, String lastName, String photoLink, String info){
