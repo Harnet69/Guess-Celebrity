@@ -12,6 +12,7 @@ public class CelebrityController {
 
     private CelebrityController() {
         siteParserController = new SiteParserController();
+        makeCelebritiesList();
     }
 
     public static CelebrityController getInstance() {
@@ -29,7 +30,13 @@ public class CelebrityController {
         return siteParserController;
     }
 
-    public void addCelebrityToList(String name, String lastName, String photoLink, String info){
-        celebrities.add(new Celebrity( name, lastName, photoLink, info));
+    public void makeCelebritiesList(){
+        for(int i=0; i< siteParserController.getCelebrityNames().size(); i++){
+            addCelebrityToList(siteParserController.getCelebrityNames().get(i), siteParserController.getCelebrityPhotos().get(i));
+        }
+    }
+
+    public void addCelebrityToList(String name, String photoLink){
+        celebrities.add(new Celebrity( name, photoLink));
     }
 }

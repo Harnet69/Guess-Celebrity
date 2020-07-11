@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         celebrityController = CelebrityController.getInstance();
-        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityNames());
-        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityPhotos());
+        System.out.println(celebrityController.getCelebrities().get(39).getName() + " : " + celebrityController.getCelebrities().get(39).getPhotoLink());
+//        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityNames());
+//        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityPhotos());
 //        siteParserController.downloadContent();
 //        siteParserController.parseContent();
     }

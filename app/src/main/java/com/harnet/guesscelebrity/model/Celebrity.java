@@ -6,11 +6,9 @@ public class Celebrity {
     private String photoLink;
     private String info;
 
-    public Celebrity(String name, String lastName, String photoLink, String info) {
+    public Celebrity(String name, String photoLink ) {
         this.name = name;
-        this.lastName = lastName;
         this.photoLink = photoLink;
-        this.info = info;
     }
 
     public String getName() {
