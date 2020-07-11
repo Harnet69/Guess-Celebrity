@@ -8,6 +8,7 @@ import android.util.Log;
 import com.harnet.guesscelebrity.R;
 import com.harnet.guesscelebrity.controller.CelebrityController;
 import com.harnet.guesscelebrity.controller.SiteParserController;
+import com.harnet.guesscelebrity.model.Celebrity;
 
 public class MainActivity extends AppCompatActivity {
     private CelebrityController celebrityController;
@@ -18,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         celebrityController = CelebrityController.getInstance();
-        System.out.println(celebrityController.getCelebrities().get(39).getName() + " : " + celebrityController.getCelebrities().get(39).getPhotoLink());
+        for(Celebrity celebrity : celebrityController.getCelebrities()){
+            System.out.println(celebrity.getName() + " : " +celebrity.getPhotoLink() );
+        }
+//        System.out.println(celebrityController.getCelebrities().get(39).getName() + " : " + celebrityController.getCelebrities().get(39).getPhotoLink());
 //        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityNames());
 //        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityPhotos());
 //        siteParserController.downloadContent();
