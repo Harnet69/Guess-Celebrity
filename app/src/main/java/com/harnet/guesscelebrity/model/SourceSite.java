@@ -31,4 +31,16 @@ public class SourceSite {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public String getPATTERN_NAME_LASTNAME() {
+        return PATTERN_NAME_LASTNAME;
+    }
+
+    public String getPATTERN_PHOTO_LINK() {
+        return PATTERN_PHOTO_LINK;
+    }
+
+    public String getPATTERN_INFO() {
+        return PATTERN_INFO;
+    }
 }

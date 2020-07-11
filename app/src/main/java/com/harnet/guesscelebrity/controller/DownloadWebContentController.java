@@ -28,6 +28,7 @@ public class DownloadWebContentController extends AsyncTask<String, Void, String
             e.printStackTrace();
             return null;
         }
+//        System.out.println(site.toString());
         return site.toString();
     }
 }
