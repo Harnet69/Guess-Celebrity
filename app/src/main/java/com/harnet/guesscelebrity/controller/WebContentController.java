@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WebContentController {
-    private SourceSite sourceSite = new SourceSite("imdb.com", "https://www.imdb.com/list/ls052283250/",
+    private SourceSite sourceSite = new SourceSite("imdb.com", "https://www.imdb.com/list/ls052283250/", "<div class=\"lister-list\">", "<div class=\"footer filmosearch\">",
             "img alt=\"(.*?)\"","src=\"https://m.media-amazon.com/images/M/(.*?)\"","");
     private WebContentDownloader downloadWebContentController = new WebContentDownloader();
 
@@ -38,7 +38,7 @@ public class WebContentController {
     public void downloadContent(){
         try {
             String content = downloadWebContentController.execute(sourceSite.getLink()).get();
-            String trimmedContent = trimContent(content, "<div class=\"lister-list\">", "<div class=\"footer filmosearch\">");
+            String trimmedContent = trimContent(content, sourceSite.getLeftTrimRegex() ,sourceSite.getRightTrimRegex() );
             sourceSite.setContent(trimmedContent);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class WebContentController {
 //        System.out.println(content);
         String[] leftTrimmedContent = content.split(leftRegex);
         String[] rightTrimmedContent = leftTrimmedContent[1].split(rightRegex);
-//        System.out.println(rightTrimmedContent[0]);
+        System.out.println(rightTrimmedContent[0]);
         return rightTrimmedContent[0];
     }
 
