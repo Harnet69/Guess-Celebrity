@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.harnet.guesscelebrity.R;
 import com.harnet.guesscelebrity.controller.GameController;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private GameController gameController;
 
     private ImageView celebrityImageView;
+    private LinearLayout answersBlockLinearLayout;
     private Button answer4Button;
 
     @Override
@@ -21,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         celebrityImageView = findViewById(R.id.celebrity_imageView);
+        answersBlockLinearLayout = findViewById(R.id.answers_block_LinearLayout);
         answer4Button = findViewById(R.id.answer4_button);
 
-        gameController = new GameController(celebrityImageView, answer4Button);
+        gameController = new GameController(answersBlockLinearLayout, celebrityImageView, answer4Button);
 
         //TODO print all celebrities with photo links
 //        for(Celebrity celebrity : celebrityController.getCelebrities()){

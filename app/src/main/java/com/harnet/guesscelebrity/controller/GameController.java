@@ -1,8 +1,10 @@
 package com.harnet.guesscelebrity.controller;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.harnet.guesscelebrity.model.Game;
 
@@ -18,15 +20,17 @@ public class GameController {
     private AnswersController answersController;
 
     private ImageView celebrityImageView;
+    private LinearLayout answersBlockLinearLayout;
     private Button answer4Button;
 
-    public GameController(ImageView celebrityImageView, Button answer4Button) {
+    public GameController(LinearLayout answersBlockLinearLayout, ImageView celebrityImageView, Button answer4Button) {
+        this.answersBlockLinearLayout = answersBlockLinearLayout;
         this.celebrityImageView = celebrityImageView;
         this.answer4Button = answer4Button;
 
         celebrityController = CelebrityController.getInstance();
         imageController = new ImageController();
-        answersController = new AnswersController();
+        answersController = new AnswersController(answersBlockLinearLayout);
 
         newGame();
     }
@@ -34,10 +38,7 @@ public class GameController {
 
     public void newGame() {
         game.setGame(true);
-        // initial celebrity
-        celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
-        answer4Button.setText(celebrityController.getCelebrities().get(celebrityNum).getName());
-
+        nextTurn();
         onClickCreator();
     }
 
@@ -45,13 +46,18 @@ public class GameController {
         answer4Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                celebrityNum++;
-                imageController = new ImageController();
-                answer4Button.setText(celebrityController.getCelebrities().get(celebrityNum).getName());
-                celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
-                answersController.setRightAnswer(celebrityController.getCelebrities().get(celebrityNum).getName());
-                System.out.println(Arrays.toString(answersController.generateAnswers()));
+                nextTurn();
             }
         });
+    }
+
+    // shows photo, generates answers
+    public void nextTurn(){
+        imageController = new ImageController();
+        answer4Button.setText(celebrityController.getCelebrities().get(celebrityNum).getName());
+        celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
+        answersController.setRightAnswer(celebrityController.getCelebrities().get(celebrityNum).getName());
+        celebrityNum++;
+        answersController.populateAnswerBtns();
     }
 }
