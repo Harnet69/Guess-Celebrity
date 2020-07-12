@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class DownloadWebContentController extends AsyncTask<String, Void, String> {
+public class WebContentDownloader extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... urls) {
@@ -28,7 +28,6 @@ public class DownloadWebContentController extends AsyncTask<String, Void, String
             e.printStackTrace();
             return null;
         }
-//        System.out.println(site.toString());
         return site.toString();
     }
 }

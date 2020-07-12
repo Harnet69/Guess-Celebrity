@@ -4,14 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.harnet.guesscelebrity.R;
 import com.harnet.guesscelebrity.controller.CelebrityController;
-import com.harnet.guesscelebrity.controller.SiteParserController;
 import com.harnet.guesscelebrity.model.Celebrity;
 
 public class MainActivity extends AppCompatActivity {
     private CelebrityController celebrityController;
+
+    private ImageView celebrityImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +21,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         celebrityController = CelebrityController.getInstance();
+
+        celebrityImageView = findViewById(R.id.celebrity_imageView);
+
         for(Celebrity celebrity : celebrityController.getCelebrities()){
             System.out.println(celebrity.getName() + " : " +celebrity.getPhotoLink() );
         }
-//        System.out.println(celebrityController.getCelebrities().get(39).getName() + " : " + celebrityController.getCelebrities().get(39).getPhotoLink());
-//        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityNames());
-//        Log.i("Result:", "onCreate: " + celebrityController.getSiteParserController().getCelebrityPhotos());
-//        siteParserController.downloadContent();
-//        siteParserController.parseContent();
+        Log.i("Link:", "onCreate: " + celebrityController.getCelebrities().get(0).getPhotoLink());
     }
 }

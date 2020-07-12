@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class ImageDownloaderController extends AsyncTask<String, Void, Bitmap> {
+class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
     private Bitmap myBitmap;
 
     // the method return an image asynchronicity

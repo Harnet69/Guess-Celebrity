@@ -8,10 +8,10 @@ import java.util.List;
 public class CelebrityController {
     private static CelebrityController instance;
     private List<Celebrity> celebrities = new ArrayList<>();
-    private SiteParserController siteParserController;
+    private WebContentController siteParserController;
 
     private CelebrityController() {
-        siteParserController = new SiteParserController();
+        siteParserController = new WebContentController();
         makeCelebritiesList();
     }
 
@@ -26,13 +26,13 @@ public class CelebrityController {
         return celebrities;
     }
 
-    public SiteParserController getSiteParserController() {
+    public WebContentController getSiteParserController() {
         return siteParserController;
     }
 
     public void makeCelebritiesList(){
         for(int i=0; i< siteParserController.getCelebrityNames().size(); i++){
-            addCelebrityToList(siteParserController.getCelebrityNames().get(i), siteParserController.getCelebrityPhotos().get(i));
+            addCelebrityToList(siteParserController.getCelebrityNames().get(i), siteParserController.getCelebrityPhotoLink().get(i));
         }
     }
 

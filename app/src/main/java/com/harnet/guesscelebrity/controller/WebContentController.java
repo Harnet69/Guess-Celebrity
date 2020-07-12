@@ -1,7 +1,5 @@
 package com.harnet.guesscelebrity.controller;
 
-import android.util.Log;
-
 import com.harnet.guesscelebrity.model.SourceSite;
 
 import java.util.ArrayList;
@@ -10,38 +8,36 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SiteParserController {
+public class WebContentController {
     private SourceSite sourceSite = new SourceSite("imdb.com", "https://www.imdb.com/list/ls052283250/",
             "img alt=\"(.*?)\"","src=\"https://m.media-amazon.com/images/M/(.*?)\"","");
-    private DownloadWebContentController downloadWebContentController = new DownloadWebContentController();
-    private List<String> celebrityNames = new ArrayList<>();
-    private List<String> celebrityPhotos = new ArrayList<>();
+    private WebContentDownloader downloadWebContentController = new WebContentDownloader();
 
-    public SiteParserController() {
+    private List<String> celebrityNames = new ArrayList<>();
+    private List<String> celebrityPhotoLink = new ArrayList<>();
+
+    public WebContentController() {
         downloadContent();
         parseContent("nameLastname", sourceSite.getPATTERN_NAME_LASTNAME());
         parseContent("photoLink", sourceSite.getPATTERN_PHOTO_LINK());
-//        parseContent("<img alt=\"(.*?)\">");
     }
 
     public List<String> getCelebrityNames() {
         return celebrityNames;
     }
 
-    public List<String> getCelebrityPhotos() {
-        return celebrityPhotos;
+    public List<String> getCelebrityPhotoLink() {
+        return celebrityPhotoLink;
     }
 
     public SourceSite getSourceSite() {
         return sourceSite;
     }
 
-    // downloads content of a source web page
+    // downloads content of a source web page and put it in content field of SourceSite object
     public void downloadContent(){
         try {
             String content = downloadWebContentController.execute(sourceSite.getLink()).get();
-            //TODO print all page content
-//            System.out.println(content);
             sourceSite.setContent(content);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -50,7 +46,6 @@ public class SiteParserController {
 
     // TODO consistently parse a string and build Celebrity objects with name, lastname, link to a photo and info
     public void parseContent(String dataKind, String regex){
-//        Log.i("Regex", "parseContent: " + regex);
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(sourceSite.getContent());
 
@@ -60,12 +55,9 @@ public class SiteParserController {
                     celebrityNames.add(m.group(1));
                     break;
                 case "photoLink":
-                    celebrityPhotos.add("https://m.media-amazon.com/images/M/"+m.group(1));
+                    celebrityPhotoLink.add("https://m.media-amazon.com/images/M/"+m.group(1));
                     break;
-
             }
-//        Log.i("SITE:", "parseContent: " + m.group(1));
-//            System.out.println(m.group(1));
         }
     }
 }
