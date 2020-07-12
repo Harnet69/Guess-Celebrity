@@ -38,10 +38,19 @@ public class WebContentController {
     public void downloadContent(){
         try {
             String content = downloadWebContentController.execute(sourceSite.getLink()).get();
-            sourceSite.setContent(content);
+            String trimmedContent = trimContent(content, "<div class=\"lister-list\">", "<div class=\"footer filmosearch\">");
+            sourceSite.setContent(trimmedContent);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private String trimContent(String content, String leftRegex, String rightRegex){
+//        System.out.println(content);
+        String[] leftTrimmedContent = content.split(leftRegex);
+        String[] rightTrimmedContent = leftTrimmedContent[1].split(rightRegex);
+//        System.out.println(rightTrimmedContent[0]);
+        return rightTrimmedContent[0];
     }
 
     // TODO consistently parse a string and build Celebrity objects with name, lastname, link to a photo and info

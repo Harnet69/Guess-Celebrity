@@ -27,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
         celebrityController = CelebrityController.getInstance();
         imageController = new ImageController();
 
-        celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(2).getPhotoLink()));
+        celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(99).getPhotoLink()));
 
 
         for(Celebrity celebrity : celebrityController.getCelebrities()){
             System.out.println(celebrity.getName() + " : " +celebrity.getPhotoLink() );
         }
-        Log.i("Link:", "onCreate: " + celebrityController.getCelebrities().get(0).getPhotoLink());
+//        Log.i("Link:", "onCreate: " + celebrityController.getCelebrities().get(0).getPhotoLink());
     }
 }
