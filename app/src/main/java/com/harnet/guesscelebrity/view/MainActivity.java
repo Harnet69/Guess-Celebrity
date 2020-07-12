@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.harnet.guesscelebrity.R;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageController imageController;
 
     private ImageView celebrityImageView;
+    private Button answer1Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
