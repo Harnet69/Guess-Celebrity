@@ -49,7 +49,7 @@ public class WebContentController {
 //        System.out.println(content);
         String[] leftTrimmedContent = content.split(leftRegex);
         String[] rightTrimmedContent = leftTrimmedContent[1].split(rightRegex);
-        System.out.println(rightTrimmedContent[0]);
+//        System.out.println(rightTrimmedContent[0]);
         return rightTrimmedContent[0];
     }
 
