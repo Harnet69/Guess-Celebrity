@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.harnet.guesscelebrity.model.Game;
 
@@ -15,6 +16,7 @@ public class GameController {
     private int celebrityNum;
 
     private CelebrityController celebrityController;
+    private TextView celebrityNumTextView;
     private ImageController imageController;
     private AnswersController answersController;
 
@@ -22,8 +24,9 @@ public class GameController {
     private LinearLayout answersBlockLinearLayout;
     private Button answer4Button;
 
-    private GameController(LinearLayout answersBlockLinearLayout, ImageView celebrityImageView, Button answer4Button) {
+    private GameController(LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView, ImageView celebrityImageView, Button answer4Button) {
         this.answersBlockLinearLayout = answersBlockLinearLayout;
+        this.celebrityNumTextView = celebrityNumTextView;
         this.celebrityImageView = celebrityImageView;
         this.answer4Button = answer4Button;
 
@@ -39,9 +42,9 @@ public class GameController {
         return instance;
     }
 
-    public static GameController getInstance(LinearLayout answersBlockLinearLayout, ImageView celebrityImageView, Button answer4Button) {
+    public static GameController getInstance(LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView, ImageView celebrityImageView, Button answer4Button) {
         if(instance == null){
-            instance = new GameController(answersBlockLinearLayout, celebrityImageView, answer4Button);
+            instance = new GameController(answersBlockLinearLayout, celebrityNumTextView, celebrityImageView, answer4Button);
         }
         return instance;
     }
@@ -53,6 +56,7 @@ public class GameController {
     }
 
     // shows photo, generates answers
+    @SuppressLint("SetTextI18n")
     public void nextTurn(){
         if(celebrityNum < celebrityController.getCelebrities().size()) {
             imageController = new ImageController();
@@ -60,6 +64,7 @@ public class GameController {
             celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
             answersController.setRightAnswer(celebrityController.getCelebrities().get(celebrityNum).getName());
             answersController.populateAnswerBtns();
+            celebrityNumTextView.setText(Integer.toString(celebrityNum+1));
             celebrityNum++;
         }else{
             //TODO here will be a new game incantation
