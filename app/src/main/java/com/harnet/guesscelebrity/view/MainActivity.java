@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         answersBlockLinearLayout = findViewById(R.id.answers_block_LinearLayout);
         answer4Button = findViewById(R.id.answer4_button);
 
-        gameController = new GameController(answersBlockLinearLayout, celebrityImageView, answer4Button);
+        gameController = GameController.getInstance(answersBlockLinearLayout, celebrityImageView, answer4Button);
 
         //TODO print all celebrities with photo links
 //        for(Celebrity celebrity : celebrityController.getCelebrities()){

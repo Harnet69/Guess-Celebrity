@@ -1,16 +1,13 @@
 package com.harnet.guesscelebrity.controller;
 
-import android.content.Context;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.harnet.guesscelebrity.model.Game;
 
-import java.util.Arrays;
-
 public class GameController {
+    private static GameController instance;
     private Game game = Game.getInstance();
 
     private int celebrityNum;
@@ -23,7 +20,7 @@ public class GameController {
     private LinearLayout answersBlockLinearLayout;
     private Button answer4Button;
 
-    public GameController(LinearLayout answersBlockLinearLayout, ImageView celebrityImageView, Button answer4Button) {
+    private GameController(LinearLayout answersBlockLinearLayout, ImageView celebrityImageView, Button answer4Button) {
         this.answersBlockLinearLayout = answersBlockLinearLayout;
         this.celebrityImageView = celebrityImageView;
         this.answer4Button = answer4Button;
@@ -35,20 +32,22 @@ public class GameController {
         newGame();
     }
 
+    // used to get access to class methods
+    public static GameController getInstance() {
+        return instance;
+    }
+
+    public static GameController getInstance(LinearLayout answersBlockLinearLayout, ImageView celebrityImageView, Button answer4Button) {
+        if(instance == null){
+            instance = new GameController(answersBlockLinearLayout, celebrityImageView, answer4Button);
+        }
+        return instance;
+    }
+
 
     public void newGame() {
         game.setGame(true);
         nextTurn();
-        onClickCreator();
-    }
-
-    public void onClickCreator() {
-        answer4Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextTurn();
-            }
-        });
     }
 
     // shows photo, generates answers
@@ -57,7 +56,7 @@ public class GameController {
         answer4Button.setText(celebrityController.getCelebrities().get(celebrityNum).getName());
         celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
         answersController.setRightAnswer(celebrityController.getCelebrities().get(celebrityNum).getName());
-        celebrityNum++;
         answersController.populateAnswerBtns();
+        celebrityNum++;
     }
 }
