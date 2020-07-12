@@ -44,7 +44,6 @@ public class GameController {
         return instance;
     }
 
-
     public void newGame() {
         game.setGame(true);
         nextTurn();

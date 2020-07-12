@@ -1,7 +1,11 @@
 package com.harnet.guesscelebrity.controller;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.harnet.guesscelebrity.R;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -49,14 +53,17 @@ public class AnswersController {
         int answersBtnsQtt = answersBlockLinearLayout.getChildCount();
 
         for (int i = 0; i < answersBtnsQtt; i++) {
-            final View subView = answersBlockLinearLayout.getChildAt(i);
+            final View subView = answersBlockLinearLayout.getChildAt(i); // reset btn color
             if (subView instanceof Button) {
+                ((Button) subView).setBackgroundColor(0x00000000);
                 ((Button) subView).setText(String.valueOf(answers[i]));
                 subView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if(isRightAnswer((String) ((Button) subView).getText())){
                             GameController.getInstance().nextTurn();
+                        }else {
+                            ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
                         }
                     }
                 });
@@ -64,6 +71,7 @@ public class AnswersController {
         }
     }
 
+    // check is answer right
     private boolean isRightAnswer(String bntText){
         System.out.println(bntText.equals(rightAnswer));
         return bntText.equals(rightAnswer);
