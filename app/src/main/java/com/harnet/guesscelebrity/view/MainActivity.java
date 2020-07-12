@@ -25,13 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         gameController = new GameController(celebrityImageView, answer4Button);
 
-
         //TODO print all celebrities with photo links
 //        for(Celebrity celebrity : celebrityController.getCelebrities()){
 //            System.out.println(celebrity.getName() + " : " +celebrity.getPhotoLink() );
 //        }
 //        Log.i("Link:", "onCreate: " + celebrityController.getCelebrities().get(0).getPhotoLink());
     }
-
-
 }

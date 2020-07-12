@@ -9,7 +9,9 @@ public class ImageController {
 
     public Bitmap getImageByLink(String imageLink){
         try {
-            return imageDownloader.execute(imageLink).get();
+            Bitmap img = imageDownloader.execute(imageLink).get();
+            imageDownloader.cancel(true); // close a thread
+            return img;
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             return null;

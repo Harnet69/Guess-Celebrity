@@ -45,7 +45,6 @@ class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 
             InputStream in = connection.getInputStream();
             myBitmap = BitmapFactory.decodeStream(in);
-
             return myBitmap;
         } catch (Exception e) {
             e.printStackTrace();
