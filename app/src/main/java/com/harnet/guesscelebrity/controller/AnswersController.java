@@ -1,6 +1,7 @@
 package com.harnet.guesscelebrity.controller;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,17 +66,16 @@ public class AnswersController {
             if (subView instanceof Button) {
                 ((Button) subView).setBackgroundColor(0x00000000);
                 ((Button) subView).setText(String.valueOf(answers[i]));
+
                 subView.setOnClickListener(new View.OnClickListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onClick(View v) {
+                        //TODO create separate methods for right and wrong answers
                         if(isRightAnswer((String) ((Button) subView).getText())){
-                            GameController.getInstance().nextTurn();
+                            handleRightAnswer(subView);
                         }else {
-                            ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
-                            scoreController.addWrongAnswer();
-                            wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
-                            subView.setOnClickListener(null);
+                            handleWrongAnswer(subView);
                         }
                     }
                 });
@@ -83,9 +83,28 @@ public class AnswersController {
         }
     }
 
+    private void handleRightAnswer(View subView){
+        ((Button) subView).setBackgroundColor(Color.parseColor("#27b029"));
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 1s = 1000ms
+                GameController.getInstance().nextTurn();
+            }
+        }, 1000);
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void handleWrongAnswer(View subView){
+        ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
+        scoreController.addWrongAnswer();
+        wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
+        subView.setOnClickListener(null);
+    }
+
     // check is answer right
     private boolean isRightAnswer(String bntText){
-        System.out.println(bntText.equals(rightAnswer));
         return bntText.equals(rightAnswer);
     }
 }
