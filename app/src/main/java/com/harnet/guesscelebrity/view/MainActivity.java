@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         answer4Button = findViewById(R.id.answer4_button);
         wrongAnswersQttTextView = findViewById(R.id.wrong_answers_textView);
 
-        gameController = GameController.getInstance(answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
+        gameController = GameController.getInstance(this, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
                                                     celebrityImageView,answer4Button);
 
         //TODO print all celebrities with photo links

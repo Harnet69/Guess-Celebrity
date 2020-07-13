@@ -62,9 +62,9 @@ public class AnswersController {
         int answersBtnsQtt = answersBlockLinearLayout.getChildCount();
 
         for (int i = 0; i < answersBtnsQtt; i++) {
-            final View subView = answersBlockLinearLayout.getChildAt(i); // reset btn color
+            final View subView = answersBlockLinearLayout.getChildAt(i);
             if (subView instanceof Button) {
-                ((Button) subView).setBackgroundColor(0x00000000);
+                ((Button) subView).setBackgroundColor(0x00000000);// reset btn color
                 ((Button) subView).setText(String.valueOf(answers[i]));
 
                 subView.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +85,7 @@ public class AnswersController {
 
     private void handleRightAnswer(View subView){
         ((Button) subView).setBackgroundColor(Color.parseColor("#27b029"));
+        clearAllListeners(subView); // block multiple pushes bag
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -101,6 +102,21 @@ public class AnswersController {
         scoreController.addWrongAnswer();
         wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
         subView.setOnClickListener(null);
+        if(scoreController.getWrongAnswersQtt() > 5){
+            // TODO go to a remembering game
+            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
+        }
+    }
+
+    private void clearAllListeners(View subView){
+        int answersBtnsQtt = answersBlockLinearLayout.getChildCount();
+
+        for (int i = 0; i < answersBtnsQtt; i++) {
+            subView = answersBlockLinearLayout.getChildAt(i); // reset btn color
+            if (subView instanceof Button) {
+                subView.setOnClickListener(null);
+            }
+        }
     }
 
     // check is answer right
