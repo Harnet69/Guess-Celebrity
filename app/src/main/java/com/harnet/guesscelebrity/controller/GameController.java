@@ -68,7 +68,6 @@ public class GameController {
     public void nextTurn(){
         if(celebrityNum < celebrityController.getCelebrities().size()) {
             imageController = new ImageController();
-//            answer4Button.setText(celebrityController.getCelebrities().get(celebrityNum).getName());
             celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
             answersController.setRightAnswer(celebrityController.getCelebrities().get(celebrityNum).getName());
             answersController.populateAnswerBtns();

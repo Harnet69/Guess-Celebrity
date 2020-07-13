@@ -1,4 +1,5 @@
 package com.harnet.guesscelebrity.controller;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +46,7 @@ public class AnswersController {
                 answers[i] = rightAnswer;
             }else{
                 String wrongAnswer = CelebrityController.getInstance().getCelebrities().get(ThreadLocalRandom.current().nextInt(0, 100)).getName();
-                // check if wrong answer not equal to right
+                // check if wrong answer not equal to right answer
                 while(wrongAnswer.equals(rightAnswer)){
                     wrongAnswer = CelebrityController.getInstance().getCelebrities().get(ThreadLocalRandom.current().nextInt(0, 100)).getName();
                 }
@@ -65,6 +66,7 @@ public class AnswersController {
                 ((Button) subView).setBackgroundColor(0x00000000);
                 ((Button) subView).setText(String.valueOf(answers[i]));
                 subView.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onClick(View v) {
                         if(isRightAnswer((String) ((Button) subView).getText())){
@@ -73,6 +75,7 @@ public class AnswersController {
                             ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
                             scoreController.addWrongAnswer();
                             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
+                            subView.setOnClickListener(null);
                         }
                     }
                 });
