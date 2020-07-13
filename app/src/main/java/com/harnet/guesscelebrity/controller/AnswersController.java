@@ -1,8 +1,10 @@
 package com.harnet.guesscelebrity.controller;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.harnet.guesscelebrity.R;
@@ -14,9 +16,14 @@ public class AnswersController {
     private String[] answers = new String[4];
 
     private LinearLayout answersBlockLinearLayout;
+    private TextView wrongAnswersQttTextView;
 
-    public AnswersController(LinearLayout answersBlockLinearLayout) {
+    private ScoreController scoreController;
+
+    public AnswersController(LinearLayout answersBlockLinearLayout, TextView wrongAnswersQttTextView, ScoreController scoreController) {
         this.answersBlockLinearLayout = answersBlockLinearLayout;
+        this.wrongAnswersQttTextView = wrongAnswersQttTextView;
+        this.scoreController = scoreController;
     }
 
     public void setRightAnswer(String rightAnswer) {
@@ -64,6 +71,8 @@ public class AnswersController {
                             GameController.getInstance().nextTurn();
                         }else {
                             ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
+                            scoreController.addWrongAnswer();
+                            wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
                         }
                     }
                 });
