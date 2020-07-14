@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.harnet.guesscelebrity.R;
+import com.harnet.guesscelebrity.controller.CelebrityController;
 import com.harnet.guesscelebrity.controller.GameController;
+import com.harnet.guesscelebrity.model.Celebrity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +65,14 @@ public class GameFragment extends Fragment {
 
         gameController = GameController.getInstance(getContext(), answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
                 celebrityImageView,answer4Button);
+
+        //for testing print all celebrities with photo links
+//        CelebrityController celebrityController = CelebrityController.getInstance();
+//        assert celebrityController != null;
+//        for(Celebrity celebrity : celebrityController.getCelebrities()){
+//            System.out.println(celebrity.getName() + " : " +celebrity.getPhotoLink() );
+//        }
+//        Log.i("Link:", "onCreate: " + celebrityController.getCelebrities().get(0).getPhotoLink());
 
         return view;
     }
