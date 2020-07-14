@@ -11,8 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.harnet.guesscelebrity.R;
+import com.harnet.guesscelebrity.controller.GameController;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,9 +25,15 @@ import com.harnet.guesscelebrity.R;
  * create an instance of this fragment.
  */
 public class GameFragment extends Fragment {
+    private GameController gameController;
 
-    private EditText messageEditText;
-    private Button sendButton;
+    private ImageView celebrityImageView;
+    private TextView celebrityNumTextView;
+    private TextView wrongAnswersQttTextView;
+    private LinearLayout answersBlockLinearLayout;
+    private Button answer4Button;
+    private FrameLayout gameContentFrameLayout;
+
     TrainingFragment.OnMessageSendListener onMessageSendListener;
 
 
@@ -41,16 +52,17 @@ public class GameFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment!!! Do the findViewById available
         View view =  inflater.inflate(R.layout.fragment_game, container, false);
-//        messageEditText = view.findViewById(R.id.messageEditText);
-//        sendButton = view.findViewById(R.id.sendButton);
 
-//        sendButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String message = messageEditText.getText().toString();// message for sending
-//                onMessageSendListener.onMessageSend(message); // send message to main activity
-//            }
-//        });
+        celebrityImageView = view.findViewById(R.id.celebrity_imageView);
+        celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
+        answersBlockLinearLayout = view.findViewById(R.id.answers_block_LinearLayout);
+        answer4Button = view.findViewById(R.id.answer4_button);
+        wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
+        gameContentFrameLayout = view.findViewById(R.id.game_content_FrameLayout);
+
+        gameController = GameController.getInstance(getContext(), answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
+                celebrityImageView,answer4Button);
+
         return view;
     }
 
