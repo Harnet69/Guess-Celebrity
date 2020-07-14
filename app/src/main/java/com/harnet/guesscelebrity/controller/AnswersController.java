@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.harnet.guesscelebrity.R;
+import com.harnet.guesscelebrity.view.GameFragment;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -22,7 +23,10 @@ public class AnswersController {
 
     private ScoreController scoreController;
 
-    public AnswersController(LinearLayout answersBlockLinearLayout, TextView wrongAnswersQttTextView, ScoreController scoreController) {
+    private GameFragment.OnMessageSendListener onMessageSendListener;
+
+    public AnswersController(GameFragment.OnMessageSendListener onMessageSendListener, LinearLayout answersBlockLinearLayout, TextView wrongAnswersQttTextView, ScoreController scoreController) {
+        this.onMessageSendListener = onMessageSendListener;
         this.answersBlockLinearLayout = answersBlockLinearLayout;
         this.wrongAnswersQttTextView = wrongAnswersQttTextView;
         this.scoreController = scoreController;
@@ -102,8 +106,9 @@ public class AnswersController {
         wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
         subView.setOnClickListener(null);
         if(scoreController.getWrongAnswersQtt() > 5){
-            // TODO go to a remembering game
+            // TODO go to a remembering game!!!
             Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
+            onMessageSendListener.onMessageSend("GoToTraining!");
         }
     }
 

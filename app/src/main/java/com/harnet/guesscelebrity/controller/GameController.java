@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.harnet.guesscelebrity.model.Game;
+import com.harnet.guesscelebrity.view.GameFragment;
 
 public class GameController {
     @SuppressLint("StaticFieldLeak")
@@ -24,14 +25,18 @@ public class GameController {
     private AnswersController answersController;
     private ScoreController scoreController;
 
+    // TODO cn be a wrong import
+    private GameFragment.OnMessageSendListener onMessageSendListener;
+
     private ImageView celebrityImageView;
     private TextView celebrityNumTextView;
     private TextView wrongAnswersQttTextView;
     private LinearLayout answersBlockLinearLayout;
     private Button answer4Button;
 
-    private GameController(Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView, TextView wrongAnswersQttTextView,
+    private GameController(GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView, TextView wrongAnswersQttTextView,
                            ImageView celebrityImageView, Button answer4Button) {
+        this.onMessageSendListener = onMessageSendListener;
         this.gameContext = gameContext;
         this.answersBlockLinearLayout = answersBlockLinearLayout;
         this.celebrityNumTextView = celebrityNumTextView;
@@ -42,7 +47,7 @@ public class GameController {
         celebrityController = CelebrityController.getInstance();
         imageController = new ImageController();
         scoreController = new ScoreController();
-        answersController = new AnswersController(answersBlockLinearLayout, wrongAnswersQttTextView, scoreController);
+        answersController = new AnswersController(onMessageSendListener, answersBlockLinearLayout, wrongAnswersQttTextView, scoreController);
         newGame();
     }
 
@@ -51,10 +56,10 @@ public class GameController {
         return instance;
     }
 
-    public static GameController getInstance(Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView,
+    public static GameController getInstance(GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView,
                                              TextView wrongAnswersQttTextView, ImageView celebrityImageView, Button answer4Button) {
         if(instance == null){
-            instance = new GameController(gameContext, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
+            instance = new GameController(onMessageSendListener, gameContext, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
                                             celebrityImageView, answer4Button);
         }
         return instance;

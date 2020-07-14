@@ -26,7 +26,7 @@ import com.harnet.guesscelebrity.model.Game;
 
 public class GameFragment extends Fragment {
     private GameController gameController;
-    private GameFragment.OnMessageSendListener onMessageSendListener;
+    private OnMessageSendListener onMessageSendListener;
 
     private ImageView celebrityImageView;
     private TextView celebrityNumTextView;
@@ -59,7 +59,8 @@ public class GameFragment extends Fragment {
         wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
         gameContentFrameLayout = view.findViewById(R.id.game_content_FrameLayout);
 
-        gameController = GameController.getInstance(getContext(), answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
+        //TODO pass onMessageSendListener to AnswerController
+        gameController = GameController.getInstance(onMessageSendListener, getContext(), answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
                 celebrityImageView,answer4Button);
 
         // Inflate the layout for this fragment!!! Do the findViewById available
@@ -87,7 +88,7 @@ public class GameFragment extends Fragment {
         super.onAttach(context);
         Activity activity = (Activity) context;
         try {
-            onMessageSendListener = (GameFragment.OnMessageSendListener) activity;
+            onMessageSendListener = (OnMessageSendListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()+ "must implemented onMessageSend");
         }
