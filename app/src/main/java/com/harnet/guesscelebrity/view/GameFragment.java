@@ -26,6 +26,7 @@ import com.harnet.guesscelebrity.model.Game;
 
 public class GameFragment extends Fragment {
     private GameController gameController;
+    private GameFragment.OnMessageSendListener onMessageSendListener;
 
     private ImageView celebrityImageView;
     private TextView celebrityNumTextView;
@@ -35,18 +36,14 @@ public class GameFragment extends Fragment {
     private Button trainingButton;
     private FrameLayout gameContentFrameLayout;
 
-    private GameFragment.OnMessageSendListener onMessageSendListener;
-
 
     // interface for exchanging data between fragments
     public interface OnMessageSendListener{
-
         public void onMessageSend(String message);
     }
 
     public GameFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

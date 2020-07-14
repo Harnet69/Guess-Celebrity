@@ -15,11 +15,10 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         fragment = new Fragment();
         exchangeBundle = new Bundle();
 
-        // fragments migration
+        // default fragment
         if(savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
@@ -27,16 +26,20 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
                     .commit();
         }
 
-        // if game ask to start training
+        // if game ask to start training //TODO find for what this thing
         if(exchangeBundle != null){
             fragment.setArguments(exchangeBundle); // record data for exchanging to arguments
         }
     }
 
-    // receive message from fragment1 and put it to exchange bundle
+    // receive message from GameFragment and put message to exchange bundle
     @Override
     public void onMessageSend(String message) {
         exchangeBundle.putString("message", message);
         System.out.println(message);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.game_content_FrameLayout, new TrainingFragment())
+                .commit();
     }
 }

@@ -71,7 +71,6 @@ public class AnswersController {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onClick(View v) {
-                        //TODO create separate methods for right and wrong answers
                         if(isRightAnswer((String) ((Button) subView).getText())){
                             handleRightAnswer(subView);
                         }else {
