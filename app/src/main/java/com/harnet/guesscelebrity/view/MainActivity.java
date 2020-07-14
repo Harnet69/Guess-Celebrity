@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import com.harnet.guesscelebrity.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GameFragment.OnMessageSendListener{
 
     private Fragment fragment;
     private Bundle exchangeBundle; // bundle to keep data for exchanging
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         fragment = new Fragment();
+        exchangeBundle = new Bundle();
 
         // fragments migration
         if(savedInstanceState == null){
@@ -25,5 +26,17 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.game_content_FrameLayout, new GameFragment())
                     .commit();
         }
+
+        // if game ask to start training
+        if(exchangeBundle != null){
+            fragment.setArguments(exchangeBundle); // record data for exchanging to arguments
+        }
+    }
+
+    // receive message from fragment1 and put it to exchange bundle
+    @Override
+    public void onMessageSend(String message) {
+        exchangeBundle.putString("message", message);
+        System.out.println(message);
     }
 }
