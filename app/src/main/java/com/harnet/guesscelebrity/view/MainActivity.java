@@ -38,14 +38,18 @@ public class MainActivity extends AppCompatActivity {
         wrongAnswersQttTextView = findViewById(R.id.wrong_answers_textView);
         gameContentFrameLayout = findViewById(R.id.game_content_FrameLayout);
 
-        gameController = GameController.getInstance(this, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
-                                                    celebrityImageView,answer4Button);
+        // run on Activity
+//        gameController = GameController.getInstance(this, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
+//                                                    celebrityImageView,answer4Button);
+
+        //run on fragments
         fragment = new Fragment();
+
         // fragments migration
         if(savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.game_content_FrameLayout, new TrainingFragment())
+                    .replace(R.id.game_content_FrameLayout, new GameFragment())
                     .commit();
         }
 
