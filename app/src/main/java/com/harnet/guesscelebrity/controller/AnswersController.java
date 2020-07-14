@@ -1,6 +1,7 @@
 package com.harnet.guesscelebrity.controller;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -9,14 +10,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
 import com.harnet.guesscelebrity.R;
+import com.harnet.guesscelebrity.model.Celebrity;
 import com.harnet.guesscelebrity.view.GameFragment;
 
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AnswersController {
     private String rightAnswer;
     private String[] answers = new String[4];
+    private boolean notGuessed = false; // for marking celebrity
 
     private LinearLayout answersBlockLinearLayout;
     private TextView wrongAnswersQttTextView;
@@ -25,7 +31,8 @@ public class AnswersController {
 
     private GameFragment.OnMessageSendListener onMessageSendListener;
 
-    public AnswersController(GameFragment.OnMessageSendListener onMessageSendListener, LinearLayout answersBlockLinearLayout, TextView wrongAnswersQttTextView, ScoreController scoreController) {
+    public AnswersController(GameFragment.OnMessageSendListener onMessageSendListener, LinearLayout answersBlockLinearLayout,
+                             TextView wrongAnswersQttTextView, ScoreController scoreController) {
         this.onMessageSendListener = onMessageSendListener;
         this.answersBlockLinearLayout = answersBlockLinearLayout;
         this.wrongAnswersQttTextView = wrongAnswersQttTextView;
@@ -72,6 +79,7 @@ public class AnswersController {
                 ((Button) subView).setText(String.valueOf(answers[i]));
 
                 subView.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onClick(View v) {
@@ -86,8 +94,14 @@ public class AnswersController {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void handleRightAnswer(View subView){
         ((Button) subView).setBackgroundColor(Color.parseColor("#27b029"));
+        if(!notGuessed){
+            CelebrityController.getInstance().getCelebrityByName((String) ((Button) subView).getText()).setGuessed(true); // mark celebrity as guessed
+        }else if(notGuessed){
+            CelebrityController.getInstance().getCelebrityByName((String) ((Button) subView).getText()).setGuessed(false); // mark celebrity as not guessed
+        }
         clearAllListeners(subView); // block multiple pushes bag
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -99,15 +113,17 @@ public class AnswersController {
         }, 1000);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     private void handleWrongAnswer(View subView){
         ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
+        notGuessed = true;
         scoreController.addWrongAnswer();
         wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
         subView.setOnClickListener(null);
         if(scoreController.getWrongAnswersQtt() > 5){
             // TODO go to a remembering game!!!
-            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
+//            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
             onMessageSendListener.onMessageSend("GoToTraining!");
         }
     }

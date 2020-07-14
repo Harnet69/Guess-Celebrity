@@ -2,6 +2,7 @@ package com.harnet.guesscelebrity.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,10 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
 import com.harnet.guesscelebrity.model.Game;
 import com.harnet.guesscelebrity.view.GameFragment;
 
 public class GameController {
+    private static final String TAG = "GameController";
     @SuppressLint("StaticFieldLeak")
     private static GameController instance;
     private Game game = Game.getInstance();
@@ -74,6 +78,7 @@ public class GameController {
     }
 
     // main game loop
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     public void nextTurn(){
         //TODO start new game if num of celebrity >100
@@ -86,6 +91,8 @@ public class GameController {
             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));// refresh wrong answers qtt TextView
 
             celebrityNum++; // increment celebrity num
+            Log.i(TAG, "nextTurn: ");
+            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
         }else{
             //TODO here will be a new game incantation
             Toast.makeText(gameContext, "Game over", Toast.LENGTH_LONG).show();

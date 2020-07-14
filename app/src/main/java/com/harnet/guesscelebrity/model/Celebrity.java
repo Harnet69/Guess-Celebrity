@@ -5,7 +5,7 @@ public class Celebrity {
     private String lastName;
     private String photoLink;
     private String info;
-    private boolean isGuessed;
+    private Boolean isGuessed = null;
 
     public Celebrity(String name, String photoLink ) {
         this.name = name;
@@ -28,11 +28,11 @@ public class Celebrity {
         return photoLink;
     }
 
-    public boolean isGuessed() {
+    public Boolean isGuessed() {
         return isGuessed;
     }
 
-    public void setGuessed(boolean guessed) {
+    public void setGuessed(Boolean guessed) {
         isGuessed = guessed;
     }
 }
