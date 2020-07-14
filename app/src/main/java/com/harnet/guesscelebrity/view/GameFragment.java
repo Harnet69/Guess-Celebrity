@@ -32,8 +32,6 @@ public class GameFragment extends Fragment {
     private TextView celebrityNumTextView;
     private TextView wrongAnswersQttTextView;
     private LinearLayout answersBlockLinearLayout;
-    private Button answer4Button; // TODO delete it
-    private Button trainingButton;
     private FrameLayout gameContentFrameLayout;
 
 
@@ -54,23 +52,14 @@ public class GameFragment extends Fragment {
         celebrityImageView = view.findViewById(R.id.celebrity_imageView);
         celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
         answersBlockLinearLayout = view.findViewById(R.id.answers_block_LinearLayout);
-        answer4Button = view.findViewById(R.id.answer4_button);
-        trainingButton = view.findViewById(R.id.training_button);
         wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
         gameContentFrameLayout = view.findViewById(R.id.game_content_FrameLayout);
 
         //TODO pass onMessageSendListener to AnswerController
         gameController = GameController.getInstance(onMessageSendListener, getContext(), answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
-                celebrityImageView,answer4Button);
+                celebrityImageView);
 
         // Inflate the layout for this fragment!!! Do the findViewById available
-        trainingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = "Training";// message for sending
-                onMessageSendListener.onMessageSend(message); // send message to main activity
-            }
-        });
 
         //for testing print all celebrities with photo links
 //        CelebrityController celebrityController = CelebrityController.getInstance();

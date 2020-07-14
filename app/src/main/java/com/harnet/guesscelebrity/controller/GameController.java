@@ -39,7 +39,7 @@ public class GameController {
     private Button answer4Button;
 
     private GameController(GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView, TextView wrongAnswersQttTextView,
-                           ImageView celebrityImageView, Button answer4Button) {
+                           ImageView celebrityImageView) {
         this.onMessageSendListener = onMessageSendListener;
         this.gameContext = gameContext;
         this.answersBlockLinearLayout = answersBlockLinearLayout;
@@ -61,10 +61,10 @@ public class GameController {
     }
 
     public static GameController getInstance(GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView,
-                                             TextView wrongAnswersQttTextView, ImageView celebrityImageView, Button answer4Button) {
+                                             TextView wrongAnswersQttTextView, ImageView celebrityImageView) {
         if(instance == null){
             instance = new GameController(onMessageSendListener, gameContext, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
-                                            celebrityImageView, answer4Button);
+                                            celebrityImageView);
         }
         return instance;
     }
@@ -90,7 +90,7 @@ public class GameController {
             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));// refresh wrong answers qtt TextView
 
             celebrityNum++; // increment celebrity num
-//            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
+            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
         }else{
             //TODO here will be a new game incantation
             Toast.makeText(gameContext, "Game over", Toast.LENGTH_LONG).show();

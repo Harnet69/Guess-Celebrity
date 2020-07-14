@@ -94,13 +94,23 @@ public class AnswersController {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void handleRightAnswer(View subView){
         ((Button) subView).setBackgroundColor(Color.parseColor("#27b029"));
         if(!notGuessed){
             CelebrityController.getInstance().getCelebrityByName((String) ((Button) subView).getText()).setGuessed(true); // mark celebrity as guessed
+            notGuessed = false;
         }else if(notGuessed){
             CelebrityController.getInstance().getCelebrityByName((String) ((Button) subView).getText()).setGuessed(false); // mark celebrity as not guessed
+            scoreController.addWrongAnswer();
+            wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
+            notGuessed = false;
+        }
+        if(scoreController.getWrongAnswersQtt() >= 5){
+            // TODO go to a remembering game!!!
+//            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
+            onMessageSendListener.onMessageSend("GoToTraining!");
         }
         clearAllListeners(subView); // block multiple pushes bag
         final Handler handler = new Handler();
@@ -118,14 +128,14 @@ public class AnswersController {
     private void handleWrongAnswer(View subView){
         ((Button) subView).setBackgroundColor(Color.parseColor("#bd332a"));
         notGuessed = true;
-        scoreController.addWrongAnswer();
-        wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
+//        scoreController.addWrongAnswer();
+//        wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
         subView.setOnClickListener(null);
-        if(scoreController.getWrongAnswersQtt() > 5){
-            // TODO go to a remembering game!!!
-//            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
-            onMessageSendListener.onMessageSend("GoToTraining!");
-        }
+//        if(scoreController.getWrongAnswersQtt() > 5){
+//            // TODO go to a remembering game!!!
+////            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
+//            onMessageSendListener.onMessageSend("GoToTraining!");
+//        }
     }
 
     private void clearAllListeners(View subView){
