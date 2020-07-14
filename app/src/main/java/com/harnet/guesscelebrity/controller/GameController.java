@@ -91,8 +91,7 @@ public class GameController {
             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));// refresh wrong answers qtt TextView
 
             celebrityNum++; // increment celebrity num
-            Log.i(TAG, "nextTurn: ");
-            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
+//            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
         }else{
             //TODO here will be a new game incantation
             Toast.makeText(gameContext, "Game over", Toast.LENGTH_LONG).show();
