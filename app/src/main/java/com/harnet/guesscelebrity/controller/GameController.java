@@ -78,7 +78,6 @@ public class GameController {
     }
 
     // main game loop
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     public void nextTurn(){
         //TODO start new game if num of celebrity >100
