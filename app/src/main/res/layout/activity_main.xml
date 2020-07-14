@@ -85,6 +85,16 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp" />
 
+        <FrameLayout
+            android:id="@+id/game_content_FrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </FrameLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
