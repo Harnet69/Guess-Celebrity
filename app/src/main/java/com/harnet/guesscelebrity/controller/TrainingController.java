@@ -23,7 +23,7 @@ public class TrainingController {
 
     private int numOfUnGuessed;
 
-    private List<Celebrity> unGuessedCelebrities = new ArrayList<>();
+    private List<Celebrity> unGuessedCelebrities;
 
     public TrainingController(View view, TrainingFragment.OnMessageSendListener onMessageSendListener) {
         unGuessedCelebrities = CelebrityController.getInstance().getListOfCelebritiesByGuess(false);
@@ -50,7 +50,7 @@ public class TrainingController {
                 celebrityNameTextView.setText(unGuessedCelebrities.get(numOfUnGuessed).getName());
                 CelebrityController.getInstance().getCelebrityByName(celebrity.getName()).setGuessed(null); //reset celebrity guess status
             } else {
-                //TODO goto GameFragment
+                //goto GameFragment
                 onMessageSendListener.onMessageSend("Game");
             }
         });

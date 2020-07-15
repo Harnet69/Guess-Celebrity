@@ -7,44 +7,30 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.harnet.guesscelebrity.R;
-import com.harnet.guesscelebrity.controller.CelebrityController;
 import com.harnet.guesscelebrity.controller.GameController;
-import com.harnet.guesscelebrity.model.Celebrity;
-import com.harnet.guesscelebrity.model.Game;
 
 public class GameFragment extends Fragment {
-    private GameController gameController;
     private OnMessageSendListener onMessageSendListener;
 
     // interface for exchanging data between fragments
     public interface OnMessageSendListener{
-        public void onMessageSend(String message);
+        void onMessageSend(String message);
     }
 
     public GameFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment!!! Do the findViewById available
         View view =  inflater.inflate(R.layout.fragment_game, container, false);
 
-        //TODO pass onMessageSendListener to AnswerController
-        gameController = new GameController(view, onMessageSendListener, getContext());
-
+        new GameController(view, onMessageSendListener, getContext());
         //for testing print all celebrities with photo links
 //        CelebrityController celebrityController = CelebrityController.getInstance();
 //        assert celebrityController != null;
@@ -52,7 +38,6 @@ public class GameFragment extends Fragment {
 //            System.out.println(celebrity.getName() + " : " +celebrity.getPhotoLink() );
 //        }
 //        Log.i("Link:", "onCreate: " + celebrityController.getCelebrities().get(0).getPhotoLink());
-
         return view;
     }
 

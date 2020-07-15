@@ -2,27 +2,15 @@ package com.harnet.guesscelebrity.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-
 import com.harnet.guesscelebrity.R;
-import com.harnet.guesscelebrity.model.Game;
 import com.harnet.guesscelebrity.view.GameFragment;
 
 public class GameController {
-    private static final String TAG = "GameController";
-    @SuppressLint("StaticFieldLeak")
-    private static GameController instance;
-    private Game game = Game.getInstance();
-
     private int celebrityNum;
 
     private Context gameContext;
@@ -48,7 +36,6 @@ public class GameController {
         celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
         wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
 
-
         celebrityController = CelebrityController.getInstance();
         imageController = new ImageController();
         scoreController = new ScoreController();
@@ -56,20 +43,7 @@ public class GameController {
         newGame();
     }
 
-    // used to get access to class methods
-    public static GameController getInstance() {
-        return instance;
-    }
-
-    public static GameController getInstance(View view, GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext) {
-        if(instance == null){
-            instance = new GameController(view, onMessageSendListener, gameContext);
-        }
-        return instance;
-    }
-
     public void newGame() {
-        game.setGame(true);
         celebrityNum = 0;
         scoreController.resetScores();
         nextTurn();
@@ -89,13 +63,10 @@ public class GameController {
             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));// refresh wrong answers qtt TextView
 
             celebrityNum++; // increment celebrity num
-            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
+//            Log.i("Non-GUEssed:", "nextTurn: " + CelebrityController.getInstance().getListOfCelebritiesByGuess(false));
         }else{
-            //TODO here will be a new game incantation
             Toast.makeText(gameContext, "Game over", Toast.LENGTH_LONG).show();
             newGame();
-            Game.getInstance().setGame(false);
-//            celebrityNum = 0;
         }
     }
 }

@@ -14,8 +14,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="center"
-        android:text="Not guessed celebrities"
-        android:textSize="30sp"
+        android:text="Not guessed celebrity"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,13 +24,12 @@
         android:id="@+id/celebrity_imageView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
         android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/celebrity_name_textView"
+        app:layout_constraintBottom_toTopOf="@+id/got_it_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/celebrity_name_textView" />
 
     <TextView
         android:id="@+id/celebrity_name_textView"
@@ -38,13 +37,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:text="Celebrity name"
-        android:textSize="35sp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/got_it_btn"
+        android:text="Celebrity name"
+        android:textSize="33sp"
+        android:textColor="@android:color/holo_red_light"
+        android:textFontWeight="@android:integer/config_longAnimTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/got_it_btn"
