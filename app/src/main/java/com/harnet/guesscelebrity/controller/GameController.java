@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.harnet.guesscelebrity.R;
 import com.harnet.guesscelebrity.model.Game;
 import com.harnet.guesscelebrity.view.GameFragment;
 
@@ -29,29 +31,29 @@ public class GameController {
     private AnswersController answersController;
     private ScoreController scoreController;
 
-    // TODO cn be a wrong import
-    private GameFragment.OnMessageSendListener onMessageSendListener;
-
     private ImageView celebrityImageView;
     private TextView celebrityNumTextView;
     private TextView wrongAnswersQttTextView;
-    private LinearLayout answersBlockLinearLayout;
-    private Button answer4Button;
 
-    private GameController(GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView, TextView wrongAnswersQttTextView,
-                           ImageView celebrityImageView) {
+    // TODO cn be a wrong import
+    private GameFragment.OnMessageSendListener onMessageSendListener;
+
+    private View view;
+
+    private GameController(View view, GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext) {
         this.onMessageSendListener = onMessageSendListener;
         this.gameContext = gameContext;
-        this.answersBlockLinearLayout = answersBlockLinearLayout;
-        this.celebrityNumTextView = celebrityNumTextView;
-        this.wrongAnswersQttTextView = wrongAnswersQttTextView;
-        this.celebrityImageView = celebrityImageView;
-        this.answer4Button = answer4Button;
+        this.view = view;
+
+        celebrityImageView = view.findViewById(R.id.celebrity_imageView);
+        celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
+        wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
+
 
         celebrityController = CelebrityController.getInstance();
         imageController = new ImageController();
         scoreController = new ScoreController();
-        answersController = new AnswersController(onMessageSendListener, answersBlockLinearLayout, wrongAnswersQttTextView, scoreController);
+        answersController = new AnswersController(onMessageSendListener, view.findViewById(R.id.answers_block_LinearLayout), wrongAnswersQttTextView, scoreController);
         newGame();
     }
 
@@ -60,11 +62,9 @@ public class GameController {
         return instance;
     }
 
-    public static GameController getInstance(GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext, LinearLayout answersBlockLinearLayout, TextView celebrityNumTextView,
-                                             TextView wrongAnswersQttTextView, ImageView celebrityImageView) {
+    public static GameController getInstance(View view, GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext) {
         if(instance == null){
-            instance = new GameController(onMessageSendListener, gameContext, answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
-                                            celebrityImageView);
+            instance = new GameController(view, onMessageSendListener, gameContext);
         }
         return instance;
     }

@@ -28,13 +28,6 @@ public class GameFragment extends Fragment {
     private GameController gameController;
     private OnMessageSendListener onMessageSendListener;
 
-    private ImageView celebrityImageView;
-    private TextView celebrityNumTextView;
-    private TextView wrongAnswersQttTextView;
-    private LinearLayout answersBlockLinearLayout;
-    private FrameLayout gameContentFrameLayout;
-
-
     // interface for exchanging data between fragments
     public interface OnMessageSendListener{
         public void onMessageSend(String message);
@@ -49,17 +42,8 @@ public class GameFragment extends Fragment {
         // Inflate the layout for this fragment!!! Do the findViewById available
         View view =  inflater.inflate(R.layout.fragment_game, container, false);
 
-        celebrityImageView = view.findViewById(R.id.celebrity_imageView);
-        celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
-        answersBlockLinearLayout = view.findViewById(R.id.answers_block_LinearLayout);
-        wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
-        gameContentFrameLayout = view.findViewById(R.id.game_content_FrameLayout);
-
         //TODO pass onMessageSendListener to AnswerController
-        gameController = GameController.getInstance(onMessageSendListener, getContext(), answersBlockLinearLayout, celebrityNumTextView, wrongAnswersQttTextView,
-                celebrityImageView);
-
-        // Inflate the layout for this fragment!!! Do the findViewById available
+        gameController = GameController.getInstance(view, onMessageSendListener, getContext());
 
         //for testing print all celebrities with photo links
 //        CelebrityController celebrityController = CelebrityController.getInstance();
