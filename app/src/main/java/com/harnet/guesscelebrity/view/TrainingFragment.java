@@ -1,5 +1,6 @@
 package com.harnet.guesscelebrity.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.Image;
 import android.os.Build;
@@ -29,6 +30,7 @@ import java.util.List;
 
 public class TrainingFragment extends Fragment {
     private TrainingController trainingController;
+    private OnMessageSendListener onMessageSendListener;
 
     // interface for exchanging data between fragments
     public interface OnMessageSendListener{
@@ -44,7 +46,8 @@ public class TrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_training, container, false);
 
-        trainingController = new TrainingController(view);
+        // TOD pass here onMessageSendListener;
+        trainingController = new TrainingController(view, onMessageSendListener);
 
         trainingController.trainingLoop();
 
@@ -54,5 +57,11 @@ public class TrainingFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        Activity activity = (Activity) context;
+        try {
+            onMessageSendListener = (OnMessageSendListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()+ "must implemented onMessageSend");
+        }
     }
 }

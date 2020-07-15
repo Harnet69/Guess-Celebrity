@@ -7,12 +7,14 @@ import android.widget.TextView;
 
 import com.harnet.guesscelebrity.R;
 import com.harnet.guesscelebrity.model.Celebrity;
+import com.harnet.guesscelebrity.view.TrainingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrainingController {
     private ImageController imageController;
+    private TrainingFragment.OnMessageSendListener onMessageSendListener;
 
     private View view;
     private ImageView celebrityImageView;
@@ -23,10 +25,11 @@ public class TrainingController {
 
     private List<Celebrity> unGuessedCelebrities = new ArrayList<>();
 
-    public TrainingController(View view) {
+    public TrainingController(View view, TrainingFragment.OnMessageSendListener onMessageSendListener) {
         unGuessedCelebrities = CelebrityController.getInstance().getListOfCelebritiesByGuess(false);
         imageController = new ImageController();
 
+        this.onMessageSendListener = onMessageSendListener;
         this.view = view;
 
         celebrityImageView = view.findViewById(R.id.celebrity_imageView);
@@ -48,6 +51,7 @@ public class TrainingController {
                 CelebrityController.getInstance().getCelebrityByName(celebrity.getName()).setGuessed(null); //reset celebrity guess status
             } else {
                 //TODO goto GameFragment
+                onMessageSendListener.onMessageSend("Game");
             }
         });
     }

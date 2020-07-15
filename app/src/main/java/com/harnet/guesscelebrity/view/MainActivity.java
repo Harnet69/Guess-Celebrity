@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import com.harnet.guesscelebrity.R;
 
-public class MainActivity extends AppCompatActivity implements GameFragment.OnMessageSendListener{
+public class MainActivity extends AppCompatActivity implements GameFragment.OnMessageSendListener, TrainingFragment.OnMessageSendListener{
 
     private Fragment fragment;
     private Bundle exchangeBundle; // bundle to keep data for exchanging
@@ -37,9 +37,16 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
     public void onMessageSend(String message) {
         exchangeBundle.putString("message", message);
         System.out.println(message);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.game_content_FrameLayout, new TrainingFragment())
-                .commit();
+        if(message.equals("Game")){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.game_content_FrameLayout, new GameFragment())
+                    .commit();
+        }else if(message.equals("Training")){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.game_content_FrameLayout, new TrainingFragment())
+                    .commit();
+        }
     }
 }

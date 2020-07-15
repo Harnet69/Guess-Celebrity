@@ -110,7 +110,7 @@ public class AnswersController {
         if(scoreController.getWrongAnswersQtt() >= 5){
             // TODO go to a remembering game!!!
 //            Log.i("WRONg:", "handleWrongAnswer: " + "go to a training game");
-            onMessageSendListener.onMessageSend("GoToTraining!");
+            onMessageSendListener.onMessageSend("Training");
         }
         clearAllListeners(subView); // block multiple pushes bag
         final Handler handler = new Handler();
