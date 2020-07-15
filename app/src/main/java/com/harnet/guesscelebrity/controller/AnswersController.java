@@ -27,16 +27,18 @@ public class AnswersController {
     private LinearLayout answersBlockLinearLayout;
     private TextView wrongAnswersQttTextView;
 
+    private GameController gameController;
     private ScoreController scoreController;
 
     private GameFragment.OnMessageSendListener onMessageSendListener;
 
-    public AnswersController(GameFragment.OnMessageSendListener onMessageSendListener, LinearLayout answersBlockLinearLayout,
+    public AnswersController(GameController gameController, GameFragment.OnMessageSendListener onMessageSendListener, LinearLayout answersBlockLinearLayout,
                              TextView wrongAnswersQttTextView, ScoreController scoreController) {
         this.onMessageSendListener = onMessageSendListener;
         this.answersBlockLinearLayout = answersBlockLinearLayout;
         this.wrongAnswersQttTextView = wrongAnswersQttTextView;
         this.scoreController = scoreController;
+        this.gameController = gameController;
     }
 
     public void setRightAnswer(String rightAnswer) {
@@ -118,7 +120,7 @@ public class AnswersController {
             @Override
             public void run() {
                 // Do something after 1s = 1000ms
-                GameController.getInstance().nextTurn();
+                gameController.nextTurn();
             }
         }, 1000);
     }

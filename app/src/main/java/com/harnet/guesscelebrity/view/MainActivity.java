@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         fragment = new Fragment();
         exchangeBundle = new Bundle();
 

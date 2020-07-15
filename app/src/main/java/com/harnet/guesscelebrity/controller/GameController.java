@@ -35,12 +35,11 @@ public class GameController {
     private TextView celebrityNumTextView;
     private TextView wrongAnswersQttTextView;
 
-    // TODO cn be a wrong import
     private GameFragment.OnMessageSendListener onMessageSendListener;
 
     private View view;
 
-    private GameController(View view, GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext) {
+    public GameController(View view, GameFragment.OnMessageSendListener onMessageSendListener, Context gameContext) {
         this.onMessageSendListener = onMessageSendListener;
         this.gameContext = gameContext;
         this.view = view;
@@ -53,7 +52,7 @@ public class GameController {
         celebrityController = CelebrityController.getInstance();
         imageController = new ImageController();
         scoreController = new ScoreController();
-        answersController = new AnswersController(onMessageSendListener, view.findViewById(R.id.answers_block_LinearLayout), wrongAnswersQttTextView, scoreController);
+        answersController = new AnswersController(this, onMessageSendListener, view.findViewById(R.id.answers_block_LinearLayout), wrongAnswersQttTextView, scoreController);
         newGame();
     }
 

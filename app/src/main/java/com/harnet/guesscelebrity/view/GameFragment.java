@@ -43,7 +43,7 @@ public class GameFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_game, container, false);
 
         //TODO pass onMessageSendListener to AnswerController
-        gameController = GameController.getInstance(view, onMessageSendListener, getContext());
+        gameController = new GameController(view, onMessageSendListener, getContext());
 
         //for testing print all celebrities with photo links
 //        CelebrityController celebrityController = CelebrityController.getInstance();
