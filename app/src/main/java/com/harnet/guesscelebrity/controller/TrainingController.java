@@ -8,8 +8,6 @@ import android.widget.TextView;
 import com.harnet.guesscelebrity.R;
 import com.harnet.guesscelebrity.model.Celebrity;
 import com.harnet.guesscelebrity.view.TrainingFragment;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class TrainingController {

@@ -53,7 +53,7 @@ public class WebContentController {
         return rightTrimmedContent[0];
     }
 
-    // TODO consistently parse a string and build Celebrity objects with name, lastname, link to a photo and info
+    // TODO consistently parse a string and build Celebrity objects with name, link to a photo
     public void parseContent(String dataKind, String regex){
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(sourceSite.getContent());
