@@ -32,10 +32,6 @@ public class CelebrityController {
         return celebrities;
     }
 
-    public WebContentController getSiteParserController() {
-        return siteParserController;
-    }
-
     public void makeCelebritiesList(){
         for(int i=0; i< siteParserController.getCelebrityNames().size(); i++){
             addCelebrityToList(siteParserController.getCelebrityNames().get(i), siteParserController.getCelebrityPhotoLink().get(i));
@@ -47,7 +43,6 @@ public class CelebrityController {
     }
 
     // mark a celebrity as guessed
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public Celebrity getCelebrityByName(final String celebrityName){
         Optional<Celebrity> celebrityOpt = CelebrityController.getInstance().getCelebrities().stream()
                 .filter(p -> p.getName().equals(celebrityName))
@@ -55,7 +50,6 @@ public class CelebrityController {
         return celebrityOpt.orElse(null);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Celebrity> getListOfCelebritiesByGuess(Boolean isGuessed){
         return celebrities.stream()
                 .filter(p -> p.isGuessed() == isGuessed)

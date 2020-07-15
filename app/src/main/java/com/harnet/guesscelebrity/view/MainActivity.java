@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import com.harnet.guesscelebrity.R;
+import com.harnet.guesscelebrity.controller.CelebrityController;
 
 public class MainActivity extends AppCompatActivity implements GameFragment.OnMessageSendListener, TrainingFragment.OnMessageSendListener{
     private Fragment fragment;
@@ -20,13 +21,10 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
 
         // default fragment
         if(savedInstanceState == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.game_content_FrameLayout, new GameFragment())
-                    .commit();
+            startGameFragment();
         }
 
-        // if game ask to start training //TODO find what for this thing
+        //TODO find what for this thing
         if(exchangeBundle != null){
             fragment.setArguments(exchangeBundle); // record data for exchanging to arguments
         }
@@ -36,17 +34,30 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
     @Override
     public void onMessageSend(String message) {
         exchangeBundle.putString("message", message);
+        switch (message){
+            case "Game" : startGameFragment();
+                        break;
+            case "Training" : startTrainingFragment();
+                        break;
+        }
+    }
 
-        if(message.equals("Game")){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.game_content_FrameLayout, new GameFragment())
-                    .commit();
-        }else if(message.equals("Training")){
+    private void startGameFragment(){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.game_content_FrameLayout, new GameFragment())
+                .commit();
+    }
+
+    private void startTrainingFragment(){
+        if(CelebrityController.getInstance().getListOfCelebritiesByGuess(false).size() > 0) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.game_content_FrameLayout, new TrainingFragment())
                     .commit();
+        }else{
+            System.out.println("Isn't exists not guessed celebrities");
+            startGameFragment();
         }
     }
 }
