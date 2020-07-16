@@ -7,15 +7,15 @@
 ## Features
 * cool UI/UX
 * step by step increasing difficulty
-* training made
+* training mode
 
 ## Application presentation
 [Know Your Staff](https://docs.google.com/presentation/d/1fA22HWoTF_1DQw4mHjD4ULCrufIYUHhFo6VxaZdNpBk/edit?usp=sharing)
 
 ## Game process video
-![Game process](https://github.com/Harnet69/Brain-trainer/blob/master/app/GitHubFiles/brain-trainer-video_new.gif)
+![Game process](https://github.com/Harnet69/Guess-celebrity/blob/master/app/GitHubFiles/screen.gif)
 
 ## Opening the project:
-* download and install .apk file from there: [Know Your Staff](https://drive.google.com/file/d/180Az1YF3eWqFI26mpF6fSjNXMdRKprZq/view?usp=sharing)
+* download and install .apk file from there: ![Know Your Staff](https://github.com/Harnet69/Guess-celebrity/blob/master/app/GitHubFiles/qr-code.png)
 * download app to your Android phone from [Google Play]()
 * clone a project code fron this repo to your computer, and run it via Android studio or another Android emulator
