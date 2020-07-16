@@ -31,8 +31,8 @@ public class PersonController {
 
     // generate staff list from webController data
     public void makeStaffList(){
-        for(int i = 0; i< webContentController.getCelebrityNames().size(); i++){
-            addPersonToStaff(webContentController.getCelebrityNames().get(i), webContentController.getCelebrityPhotoLink().get(i));
+        for(int i = 0; i< webContentController.getStaffNames().size(); i++){
+            addPersonToStaff(webContentController.getStaffNames().get(i), webContentController.getStaffPhotoLink().get(i));
         }
     }
 

@@ -13,8 +13,8 @@ public class WebContentController {
             "img alt=\"(.*?)\"","src=\"https://m.media-amazon.com/images/M/(.*?)\"","");
     private WebContentDownloader downloadWebContentController = new WebContentDownloader();
 
-    private List<String> celebrityNames = new ArrayList<>();
-    private List<String> celebrityPhotoLink = new ArrayList<>();
+    private List<String> staffNames = new ArrayList<>();
+    private List<String> staffPhotoLink = new ArrayList<>();
 
     public WebContentController() {
         downloadContent();
@@ -22,12 +22,12 @@ public class WebContentController {
         parseContent("photoLink", sourceSite.getPATTERN_PHOTO_LINK());
     }
 
-    public List<String> getCelebrityNames() {
-        return celebrityNames;
+    public List<String> getStaffNames() {
+        return staffNames;
     }
 
-    public List<String> getCelebrityPhotoLink() {
-        return celebrityPhotoLink;
+    public List<String> getStaffPhotoLink() {
+        return staffPhotoLink;
     }
 
     public SourceSite getSourceSite() {
@@ -53,7 +53,7 @@ public class WebContentController {
         return rightTrimmedContent[0];
     }
 
-    // TODO consistently parse a string and build Celebrity objects with name, link to a photo
+    // TODO consistently parse a string and build Person objects with name, link to a photo
     public void parseContent(String dataKind, String regex){
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(sourceSite.getContent());
@@ -61,10 +61,10 @@ public class WebContentController {
         while(m.find()){
             switch (dataKind){
                 case "nameLastname":
-                    celebrityNames.add(m.group(1));
+                    staffNames.add(m.group(1));
                     break;
                 case "photoLink":
-                    celebrityPhotoLink.add("https://m.media-amazon.com/images/M/"+m.group(1));
+                    staffPhotoLink.add("https://m.media-amazon.com/images/M/"+m.group(1));
                     break;
             }
         }
