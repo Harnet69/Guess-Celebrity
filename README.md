@@ -1,14 +1,14 @@
 # Know your staff
 ## For whom?
 * Human Resources staff : easy onboarding of newbies
-* newbies : unstressful remembering colleagues faces
-* employee : reminding “what’s the name of that colleague?”
+* Newbies : remember colleagues' faces without stress
+* Employee : reminders of colleagues' names
 
 ## Features
-* the data is dynamic( app gets it from imdb TOP-100 celebrity rate)
-* cool UI/UX
-* step-by-step increasing difficulty
-* training mode
+* The data is dynamic(app pulls and parse it from IMDb TOP-100 celebrities)
+* Cool UI/UX
+* Step-by-step increasing difficulty
+* Training mode
 
 ## Application presentation
 [Know Your Staff](https://docs.google.com/presentation/d/1fA22HWoTF_1DQw4mHjD4ULCrufIYUHhFo6VxaZdNpBk/edit?usp=sharing)
