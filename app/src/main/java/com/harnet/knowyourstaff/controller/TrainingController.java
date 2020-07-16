@@ -30,8 +30,8 @@ public class TrainingController {
         this.onMessageSendListener = onMessageSendListener;
         this.view = view;
 
-        celebrityImageView = view.findViewById(R.id.celebrity_imageView);
-        celebrityNameTextView = view.findViewById(R.id.celebrity_name_textView);
+        celebrityImageView = view.findViewById(R.id.person_imageView);
+        celebrityNameTextView = view.findViewById(R.id.person_name_textView);
         gotItBtn = view.findViewById(R.id.got_it_btn);
     }
 

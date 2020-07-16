@@ -8,7 +8,6 @@ public class SourceSite {
     private String rightTrimRegex;
     private final String PATTERN_NAME_LASTNAME;
     private final String PATTERN_PHOTO_LINK;
-    private final String PATTERN_INFO;
 
     public SourceSite( String name, String link, String leftTrimRegex, String rightTrimRegex, String patternNameLastname, String patternPhotoLink, String patternInfo) {
         this.leftTrimRegex = leftTrimRegex;
@@ -17,7 +16,6 @@ public class SourceSite {
         this.link = link;
         PATTERN_NAME_LASTNAME = patternNameLastname;
         PATTERN_PHOTO_LINK = patternPhotoLink;
-        PATTERN_INFO = patternInfo;
     }
 
     public String getLeftTrimRegex() {
@@ -58,9 +56,5 @@ public class SourceSite {
 
     public String getPATTERN_PHOTO_LINK() {
         return PATTERN_PHOTO_LINK;
-    }
-
-    public String getPATTERN_INFO() {
-        return PATTERN_INFO;
     }
 }

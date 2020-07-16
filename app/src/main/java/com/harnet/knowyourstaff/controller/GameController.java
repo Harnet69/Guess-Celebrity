@@ -32,7 +32,7 @@ public class GameController {
         this.gameContext = gameContext;
         this.view = view;
 
-        celebrityImageView = view.findViewById(R.id.celebrity_imageView);
+        celebrityImageView = view.findViewById(R.id.person_imageView);
         celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
         wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
 

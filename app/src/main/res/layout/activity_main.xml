@@ -7,7 +7,7 @@
     tools:context=".view.MainActivity">
 
         <FrameLayout
-            android:id="@+id/game_content_FrameLayout"
+            android:id="@+id/content_FrameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

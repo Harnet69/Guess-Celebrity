@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
     private void startGameFragment(){
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.game_content_FrameLayout, new GameFragment())
+                .replace(R.id.content_FrameLayout, new GameFragment())
                 .commit();
     }
 
@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
         if(PersonController.getInstance().getStaffListByGuess(false).size() > 0) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.game_content_FrameLayout, new TrainingFragment())
+                    .replace(R.id.content_FrameLayout, new TrainingFragment())
                     .commit();
         }else{
-            System.out.println("Isn't exists not guessed celebrities");
+            System.out.println("Isn't exists not guessed persons");
             startGameFragment();
         }
     }
