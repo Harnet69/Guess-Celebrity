@@ -18,6 +18,5 @@
 
 ## Opening the project:
 ![Know Your Staff](https://github.com/Harnet69/Know-Your-Staff/blob/master/app/GitHubFiles/qr-code.png)
-* scan QR code with your android phone camera, when download and install .apk file 
-* download app to your Android phone from [Google Play]()
+* scan QR code with your android phone camera, then download and install .apk file
 * clone a project code from this repo to your computer, and run it via Android studio or another Android emulator
