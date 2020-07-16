@@ -5,8 +5,9 @@
 * employee : reminding “what’s the name of that colleague?”
 
 ## Features
+* the data is dynamic( app gets it from imdb TOP-100 celebrity rate)
 * cool UI/UX
-* step by step increasing difficulty
+* step-by-step increasing difficulty
 * training mode
 
 ## Application presentation
