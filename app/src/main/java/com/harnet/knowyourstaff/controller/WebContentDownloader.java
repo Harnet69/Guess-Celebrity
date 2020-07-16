@@ -1,4 +1,4 @@
-package com.harnet.guesscelebrity.controller;
+package com.harnet.knowyourstaff.controller;
 
 import android.os.AsyncTask;
 import java.io.IOException;

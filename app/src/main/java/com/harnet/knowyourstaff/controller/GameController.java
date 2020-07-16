@@ -1,4 +1,4 @@
-package com.harnet.guesscelebrity.controller;
+package com.harnet.knowyourstaff.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,14 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.harnet.guesscelebrity.R;
-import com.harnet.guesscelebrity.view.GameFragment;
+import com.harnet.knowyourstaff.R;
+import com.harnet.knowyourstaff.view.GameFragment;
 
 public class GameController {
     private int celebrityNum;
 
     private Context gameContext;
-    private CelebrityController celebrityController;
+    private PersonController celebrityController;
     private ImageController imageController;
     private AnswersController answersController;
     private ScoreController scoreController;
@@ -36,7 +36,7 @@ public class GameController {
         celebrityNumTextView = view.findViewById(R.id.celebrity_num_textView);
         wrongAnswersQttTextView = view.findViewById(R.id.wrong_answers_textView);
 
-        celebrityController = CelebrityController.getInstance();
+        celebrityController = PersonController.getInstance(); // parse a web page
         imageController = new ImageController();
         scoreController = new ScoreController();
         answersController = new AnswersController(this, onMessageSendListener, view.findViewById(R.id.answers_block_LinearLayout), wrongAnswersQttTextView, scoreController);
@@ -54,10 +54,10 @@ public class GameController {
     @SuppressLint("SetTextI18n")
     public void nextTurn(){
         //TODO start new game if num of celebrity >100
-        if(celebrityNum < celebrityController.getCelebrities().size()) {
+        if(celebrityNum < celebrityController.getStaff().size()) {
             imageController = new ImageController();
-            celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getCelebrities().get(celebrityNum).getPhotoLink()));
-            answersController.setRightAnswer(celebrityController.getCelebrities().get(celebrityNum).getName());
+            celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrityController.getStaff().get(celebrityNum).getPhotoLink()));
+            answersController.setRightAnswer(celebrityController.getStaff().get(celebrityNum).getName());
             answersController.populateAnswerBtns();// refresh answer btns
             celebrityNumTextView.setText(Integer.toString(celebrityNum+1));// refresh celebrity number TextView
             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));// refresh wrong answers qtt TextView

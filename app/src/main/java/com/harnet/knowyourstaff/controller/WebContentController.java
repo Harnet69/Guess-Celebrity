@@ -1,6 +1,6 @@
-package com.harnet.guesscelebrity.controller;
+package com.harnet.knowyourstaff.controller;
 
-import com.harnet.guesscelebrity.model.SourceSite;
+import com.harnet.knowyourstaff.model.SourceSite;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.harnet.guesscelebrity;
+package com.harnet.knowyourstaff;
 
 import org.junit.Test;
 

@@ -1,11 +1,11 @@
-package com.harnet.guesscelebrity.view;
+package com.harnet.knowyourstaff.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import com.harnet.guesscelebrity.R;
-import com.harnet.guesscelebrity.controller.CelebrityController;
+import com.harnet.knowyourstaff.R;
+import com.harnet.knowyourstaff.controller.PersonController;
 
 public class MainActivity extends AppCompatActivity implements GameFragment.OnMessageSendListener, TrainingFragment.OnMessageSendListener{
     private Fragment fragment;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements GameFragment.OnMe
     }
 
     private void startTrainingFragment(){
-        if(CelebrityController.getInstance().getListOfCelebritiesByGuess(false).size() > 0) {
+        if(PersonController.getInstance().getStaffListByGuess(false).size() > 0) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.game_content_FrameLayout, new TrainingFragment())

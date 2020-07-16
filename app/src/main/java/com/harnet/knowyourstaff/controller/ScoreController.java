@@ -1,4 +1,4 @@
-package com.harnet.guesscelebrity.controller;
+package com.harnet.knowyourstaff.controller;
 
 public class ScoreController {
     private int wrongAnswersQtt;

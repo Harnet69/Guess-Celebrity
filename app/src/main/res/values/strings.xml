@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Guess Celebrity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Celebrity name and last name</string>
-    <string name="game_here">Game here</string>
+    <string name="app_name">Know your staff</string>
+    <string name="hello_blank_fragment">Colleague name and last name</string>
+    <string name="game_here">Guess game here</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.harnet.guesscelebrity.model;
+package com.harnet.knowyourstaff.model;
 
 public class SourceSite {
     private String name;

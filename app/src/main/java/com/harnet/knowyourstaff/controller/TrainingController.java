@@ -1,13 +1,13 @@
-package com.harnet.guesscelebrity.controller;
+package com.harnet.knowyourstaff.controller;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.harnet.guesscelebrity.R;
-import com.harnet.guesscelebrity.model.Celebrity;
-import com.harnet.guesscelebrity.view.TrainingFragment;
+import com.harnet.knowyourstaff.R;
+import com.harnet.knowyourstaff.model.Person;
+import com.harnet.knowyourstaff.view.TrainingFragment;
 import java.util.List;
 
 public class TrainingController {
@@ -21,10 +21,10 @@ public class TrainingController {
 
     private int numOfUnGuessed;
 
-    private List<Celebrity> unGuessedCelebrities;
+    private List<Person> unGuessedCelebrities;
 
     public TrainingController(View view, TrainingFragment.OnMessageSendListener onMessageSendListener) {
-        unGuessedCelebrities = CelebrityController.getInstance().getListOfCelebritiesByGuess(false);
+        unGuessedCelebrities = PersonController.getInstance().getStaffListByGuess(false);
         imageController = new ImageController();
 
         this.onMessageSendListener = onMessageSendListener;
@@ -36,17 +36,17 @@ public class TrainingController {
     }
 
     public void trainingLoop() {
-        celebrityImageView.setImageBitmap(imageController.getImageByLink(CelebrityController.getInstance().getCelebrityByName(unGuessedCelebrities.get(numOfUnGuessed).getName()).getPhotoLink()));
+        celebrityImageView.setImageBitmap(imageController.getImageByLink(PersonController.getInstance().getPersonByName(unGuessedCelebrities.get(numOfUnGuessed).getName()).getPhotoLink()));
         celebrityNameTextView.setText(unGuessedCelebrities.get(numOfUnGuessed).getName());
 
         gotItBtn.setOnClickListener(v -> {
             if (numOfUnGuessed < unGuessedCelebrities.size() - 1) {
                 numOfUnGuessed++;
-                Celebrity celebrity = CelebrityController.getInstance().getCelebrityByName(unGuessedCelebrities.get(numOfUnGuessed).getName());
+                Person celebrity = PersonController.getInstance().getPersonByName(unGuessedCelebrities.get(numOfUnGuessed).getName());
                 imageController = new ImageController();
                 celebrityImageView.setImageBitmap(imageController.getImageByLink(celebrity.getPhotoLink()));
                 celebrityNameTextView.setText(unGuessedCelebrities.get(numOfUnGuessed).getName());
-                CelebrityController.getInstance().getCelebrityByName(celebrity.getName()).setGuessed(null); //reset celebrity guess status
+                PersonController.getInstance().getPersonByName(celebrity.getName()).setGuessed(null); //reset celebrity guess status
             } else {
                 //goto GameFragment
                 onMessageSendListener.onMessageSend("Game");

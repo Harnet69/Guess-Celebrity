@@ -1,27 +1,17 @@
-package com.harnet.guesscelebrity.model;
+package com.harnet.knowyourstaff.model;
 
-public class Celebrity {
+public class Person {
     private String name;
-    private String lastName;
     private String photoLink;
-    private String info;
     private Boolean isGuessed = null;
 
-    public Celebrity(String name, String photoLink ) {
+    public Person(String name, String photoLink ) {
         this.name = name;
         this.photoLink = photoLink;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getInfo() {
-        return info;
     }
 
     public String getPhotoLink() {

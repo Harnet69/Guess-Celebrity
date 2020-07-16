@@ -1,16 +1,13 @@
-package com.harnet.guesscelebrity.controller;
+package com.harnet.knowyourstaff.controller;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
-import com.harnet.guesscelebrity.view.GameFragment;
+import com.harnet.knowyourstaff.view.GameFragment;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AnswersController {
@@ -53,10 +50,10 @@ public class AnswersController {
             if(i == rightAnswerPos){
                 answers[i] = rightAnswer;
             }else{
-                String wrongAnswer = CelebrityController.getInstance().getCelebrities().get(ThreadLocalRandom.current().nextInt(0, 100)).getName();
+                String wrongAnswer = PersonController.getInstance().getStaff().get(ThreadLocalRandom.current().nextInt(0, 100)).getName();
                 // check if wrong answer not equal to right answer
                 while(wrongAnswer.equals(rightAnswer)){
-                    wrongAnswer = CelebrityController.getInstance().getCelebrities().get(ThreadLocalRandom.current().nextInt(0, 100)).getName();
+                    wrongAnswer = PersonController.getInstance().getStaff().get(ThreadLocalRandom.current().nextInt(0, 100)).getName();
                 }
                 answers[i] = wrongAnswer;
             }
@@ -89,10 +86,10 @@ public class AnswersController {
     private void handleRightAnswer(View subView){
         ((Button) subView).setBackgroundColor(Color.parseColor("#27b029"));
         if(!notGuessed){
-            CelebrityController.getInstance().getCelebrityByName((String) ((Button) subView).getText()).setGuessed(true); // mark celebrity as guessed
+            PersonController.getInstance().getPersonByName((String) ((Button) subView).getText()).setGuessed(true); // mark celebrity as guessed
             notGuessed = false;
         }else if(notGuessed){
-            CelebrityController.getInstance().getCelebrityByName((String) ((Button) subView).getText()).setGuessed(false); // mark celebrity as not guessed
+            PersonController.getInstance().getPersonByName((String) ((Button) subView).getText()).setGuessed(false); // mark celebrity as not guessed
             scoreController.addWrongAnswer();
             wrongAnswersQttTextView.setText(Integer.toString(scoreController.getWrongAnswersQtt()));
             notGuessed = false;
