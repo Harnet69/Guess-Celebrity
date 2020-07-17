@@ -1,4 +1,4 @@
-# Know your staff
+# Know your staff Android application
 ## For whom?
 * Human Resources staff : easy onboarding of newbies
 * Newbies : remember colleagues' faces without stress
