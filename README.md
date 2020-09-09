@@ -17,6 +17,6 @@
 ![Game process](https://github.com/Harnet69/Know-Your-Staff/blob/master/app/GitHubFiles/screen.gif)
 
 ## Opening the project:
-![Know Your Staff](https://github.com/Harnet69/Know-Your-Staff/blob/master/app/GitHubFiles/qr-code.png)
-* Scan QR code with your android phone camera, then download and install .apk file
+![Google Play](https://github.com/Harnet69/Know-Your-Staff/blob/master/app/GitHubFiles/qr-code_GooglePlay.png)
+* Scan QR code with your android phone camera, then download and install application from Google Play
 * Clone a project code from this repo to your computer, and run it via Android Studio or another Android emulator
